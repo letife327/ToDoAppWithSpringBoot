@@ -20,9 +20,7 @@ public class TaskService implements ITaskService {
 
     public List<ResponseTask> getTasks(Integer userId) {
         if (userId == null) {
-            return taskRepository.findAll().stream().map(task -> {
-                return TaskMapper.taskToResponse(task);
-            }).toList();
+            throw new RuntimeException("User id cannot be null");
         }
         return taskRepository.findByUserId(userId).stream().map(task -> {
             return TaskMapper.taskToResponse(task);
