@@ -2,6 +2,7 @@ package az.texnoera.todoappinspringboot.controllers;
 
 import az.texnoera.todoappinspringboot.entity.User;
 import az.texnoera.todoappinspringboot.model.requests.RequestUser;
+import az.texnoera.todoappinspringboot.model.requests.UpdateUserRequest;
 import az.texnoera.todoappinspringboot.model.response.ResponseUser;
 import az.texnoera.todoappinspringboot.services.concretes.UserService;
 import lombok.RequiredArgsConstructor;
@@ -15,24 +16,24 @@ import java.util.List;
 public class UserController {
     public final UserService userService;
     @GetMapping
-    public List<User> getUsers() {
+    public List<ResponseUser> getUsers() {
         return userService.getUsers();
     }
     @GetMapping("{id}")
-    public User getUserById (@PathVariable int id) {
+    public ResponseUser getUserById (@PathVariable int id) {
         return userService.getUserById(id);
     }
     @PostMapping
     public ResponseUser addUser(@RequestBody RequestUser user) {
        return  userService.addUser(user);
     }
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable int id) {
         userService.deleteUser(id);
     }
-    @PutMapping
-    public void updateUser(int id, @RequestBody RequestUser user) {
-        userService.updateUser(id,user);
+    @PutMapping("/{id}")
+    public ResponseUser updateUser(@PathVariable int id, @RequestBody UpdateUserRequest user) {
+        return userService.updateUser(id,user);
     }
 
 }
