@@ -1,6 +1,7 @@
 package az.texnoera.todoappinspringboot.entity;
 
 import az.texnoera.todoappinspringboot.model.enums.TaskStatus;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,8 +20,10 @@ public class Task {
     private int id;
     @ManyToOne
     private User user;
+    @Column(nullable = false)
     private String name;
     private String priority;
+    @Enumerated(EnumType.STRING)
     private TaskStatus status;
     private String dueDate;
 }
