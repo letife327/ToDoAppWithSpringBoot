@@ -31,4 +31,13 @@ public interface TaskMapper {
             .name(savedTask.getName())
             .build();
     }
+    static ResponseTask taskToResponseV1 (Task savedTask) {
+        return ResponseTask.builder()
+                .id(savedTask.getId())
+                .dueDate(savedTask.getDueDate())
+                .status(savedTask.getStatus())
+                .priority(savedTask.getPriority())
+                .name(savedTask.getName())
+                .build();
+    }
 }
